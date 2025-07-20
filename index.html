@@ -143,12 +143,35 @@
           </div>
         `;
       } else if (page === 'about') {
-        content.innerHTML = `
-          <h1>Tentang Saya</h1>
-          <p>Nama lengkap: Muhammad Fahri Firdaussillah</p>
-          <p>Seorang pelajar SMK yang suka ngulik, eksperimen coding, dan ngobrol ama AI 🤖</p>
-          <p>Sedang belajar banyak hal tentang teknologi, server, dan automation.</p>
-        `;
+  content.innerHTML = `
+    <h1>Tentang Saya</h1>
+    <p>Nama lengkap: Muhammad Fahri Firdaussillah</p>
+    <p>Seorang pelajar SMK yang suka ngulik, eksperimen coding, dan ngobrol ama AI 🤖</p>
+    <p>Sedang belajar banyak hal tentang teknologi, server, dan automation.</p>
+
+    <h2 style="margin-top: 20px;">Favorit</h2>
+    <ul style="text-align: left; margin: 0 auto; max-width: 400px; padding-left: 20px;">
+      <li><strong>Makanan:</strong> Nasi goreng, seblak, ramen</li>
+      <li><strong>Minuman:</strong> Thai tea, kopi susu</li>
+      <li><strong>Film:</strong> Interstellar, Spider-Man: No Way Home</li>
+      <li><strong>Hobi:</strong> Ngoding, dengerin musik, editing</li>
+    </ul>
+
+    <h2 style="margin-top: 20px;">Lagu Favorit 🎵</h2>
+    <img src="https://i1.sndcdn.com/artworks-Dw2RzgbmcGSpZdEn-kxYyTw-t500x500.jpg" 
+         alt="cover" 
+         style="width: 100px; border-radius: 12px; margin: 10px auto;" />
+    <p>"Dandelions - Ruth B"</p>
+    <audio controls style="width: 100%; margin-top: 10px;">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      Browser kamu tidak mendukung pemutar audio.
+    </audio>
+
+    <footer style="margin-top: 40px; font-size: 12px; color: #ccc;">
+      <hr style="border-color: #444; margin: 20px 0;">
+      <p>&copy; All copyright reversed | Since 2025</p>
+    </footer>
+  `;
       } else if (page === 'contact') {
         content.innerHTML = `
           <h1>Kontak Saya</h1>
