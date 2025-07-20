@@ -19,6 +19,7 @@
       align-items: center;
       min-height: 100vh;
       padding: 20px;
+      position: relative;
     }
     .card {
       background: rgba(255, 255, 255, 0.05);
@@ -66,9 +67,56 @@
       background: #00c48c;
       transform: scale(1.05);
     }
+
+    /* Menu titik tiga */
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      color: #00ffa6;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .dropdown {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 255, 170, 0.3);
+      display: none;
+      flex-direction: column;
+      min-width: 120px;
+      overflow: hidden;
+    }
+    .dropdown a {
+      padding: 10px;
+      text-decoration: none;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.3s;
+    }
+    .dropdown a:hover {
+      background: rgba(0, 255, 170, 0.2);
+    }
   </style>
 </head>
 <body>
+
+  <!-- Tombol Titik Tiga -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <!-- Dropdown Menu -->
+  <div class="dropdown" id="dropdownMenu">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+
   <div class="card">
     <img src="https://files.cloudkuimages.guru/images/49YXelND.jpg" alt="Foto Fahri">
     <h1>Muhammad Fahri Firdaussillah</h1>
@@ -80,5 +128,13 @@
       <a href="https://t.me/VellzXyrine" target="_blank">Telegram</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+
 </body>
 </html>
