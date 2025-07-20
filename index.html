@@ -149,30 +149,57 @@
     <p>Seorang pelajar SMK yang suka ngulik, eksperimen coding, dan ngobrol ama AI 🤖</p>
     <p>Sedang belajar banyak hal tentang teknologi, server, dan automation.</p>
 
-    <h2 style="margin-top: 20px;">Favorit</h2>
-    <ul style="text-align: left; margin: 0 auto; max-width: 400px; padding-left: 20px;">
-      <li><strong>Makanan:</strong> Nasi goreng, seblak, ramen</li>
-      <li><strong>Minuman:</strong> Thai tea, kopi susu</li>
-      <li><strong>Film:</strong> Interstellar, Spider-Man: No Way Home</li>
-      <li><strong>Hobi:</strong> Ngoding, dengerin musik, editing</li>
-    </ul>
+    <div id="favoritPrompt" style="margin-top: 30px;">
+      <p style="font-size: 16px;">🤔 Kamu mau tau yaa, apa yang disukai sama Fahri?</p>
+      <button id="toggleFav" style="
+        padding: 10px 20px;
+        border: none;
+        background: #9b59b6;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+      ">✨ Tampilkan Favoritnya</button>
+    </div>
 
-    <h2 style="margin-top: 20px;">Lagu Favorit 🎵</h2>
-    <img src="https://files.cloudkuimages.guru/images/13ASyWi7.jpg" 
-         alt="cover" 
-         style="width: 100px; border-radius: 12px; margin: 10px auto;" />
-    <p>"Dandelions - Ruth B"</p>
-    <audio controls style="width: 100%; margin-top: 10px;">
-      <source src="https://files.cloudkuimages.guru/audios/A7NZqoJk.mp3" type="audio/mpeg">
-      Browser kamu tidak mendukung pemutar audio.
-    </audio>
+    <div id="favoritSection" style="display: none; margin-top: 25px;">
+      <h2>Favorit</h2>
+      <ul style="text-align: left; margin: 0 auto; max-width: 400px; padding-left: 20px;">
+        <li><strong>Makanan:</strong> Nasi goreng, seblak, ramen</li>
+        <li><strong>Minuman:</strong> Thai tea, kopi susu</li>
+        <li><strong>Film:</strong> Interstellar, Spider-Man: No Way Home</li>
+        <li><strong>Hobi:</strong> Ngoding, dengerin musik, editing</li>
+      </ul>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <img src="https://files.cloudkuimages.guru/images/13ASyWi7.jpg" 
+             alt="cover" 
+             style="width: 140px; border-radius: 12px;" />
+        <p style="margin-top: 10px;">"Dandelions - Ruth B"</p>
+        <audio controls style="width: 100%; max-width: 350px;">
+          <source src="https://files.cloudkuimages.guru/audios/A7NZqoJk.mp3" type="audio/mpeg">
+          Browser kamu tidak mendukung pemutar audio.
+        </audio>
+      </div>
+    </div>
 
     <footer style="margin-top: 40px; font-size: 12px; color: #ccc;">
       <hr style="border-color: #444; margin: 20px 0;">
       <p>&copy; All copyright reversed | Since 2025</p>
     </footer>
   `;
-      } else if (page === 'contact') {
+
+  // Script buat toggle semua favorit
+  setTimeout(() => {
+    const btn = document.getElementById("toggleFav");
+    const section = document.getElementById("favoritSection");
+    btn.onclick = () => {
+      const show = section.style.display === "none";
+      section.style.display = show ? "block" : "none";
+      btn.innerText = show ? "🙈 Sembunyikan Favoritnya" : "✨ Tampilkan Favoritnya";
+    };
+  }, 0);
+} else if (page === 'contact') {
         content.innerHTML = `
           <h1>Kontak Saya</h1>
           <div class="buttons">
