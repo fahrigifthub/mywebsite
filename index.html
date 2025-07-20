@@ -142,7 +142,7 @@
             <a href="https://t.me/VellzXyrine" target="_blank">Telegram</a>
           </div>
         `;
-      } else if (page === 'about') {
+} else if (page === 'about') {
   content.innerHTML = `
     <h1>Tentang Saya</h1>
     <p>Nama lengkap: Muhammad Fahri Firdaussillah</p>
@@ -150,7 +150,7 @@
     <p>Sedang belajar banyak hal tentang teknologi, server, dan automation.</p>
 
     <div id="favoritPrompt" style="margin-top: 30px;">
-      <p style="font-size: 16px;">🤔 Kamu mau tau yaa, apa yang disukai sama Fahri?</p>
+      <p id="typingText" style="font-size: 16px;"></p>
       <button id="toggleFav" style="
         padding: 10px 20px;
         border: none;
@@ -159,6 +159,7 @@
         border-radius: 8px;
         cursor: pointer;
         transition: background 0.3s;
+        display: none;
       ">✨ Tampilkan Favoritnya</button>
     </div>
 
@@ -189,8 +190,25 @@
     </footer>
   `;
 
-  // Script buat toggle semua favorit
+  // efek ngetik
   setTimeout(() => {
+    const typingText = document.getElementById("typingText");
+    const fullText = "🤔 Kamu mau tau yaa, apa yang disukai sama Fahri?";
+    let i = 0;
+
+    function typeWriter() {
+      if (i < fullText.length) {
+        typingText.innerHTML += fullText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40); // kecepatan ketik
+      } else {
+        document.getElementById("toggleFav").style.display = "inline-block";
+      }
+    }
+
+    typeWriter();
+
+    // toggle favorit
     const btn = document.getElementById("toggleFav");
     const section = document.getElementById("favoritSection");
     btn.onclick = () => {
@@ -199,7 +217,8 @@
       btn.innerText = show ? "🙈 Sembunyikan Favoritnya" : "✨ Tampilkan Favoritnya";
     };
   }, 0);
-} else if (page === 'contact') {
+}
+ else if (page === 'contact') {
         content.innerHTML = `
           <h1>Kontak Saya</h1>
           <div class="buttons">
