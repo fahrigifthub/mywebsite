@@ -20,6 +20,7 @@
       min-height: 100vh;
       padding: 20px;
       position: relative;
+      overflow-x: hidden;
     }
     .card {
       background: rgba(255, 255, 255, 0.05);
@@ -30,6 +31,7 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
       text-align: center;
+      z-index: 1;
     }
     .card img {
       width: 120px;
@@ -68,7 +70,7 @@
       transform: scale(1.05);
     }
 
-    /* Menu titik tiga */
+    /* Tombol Titik Tiga */
     .menu-toggle {
       position: absolute;
       top: 20px;
@@ -80,28 +82,43 @@
       cursor: pointer;
       z-index: 10;
     }
-    .dropdown {
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 255, 170, 0.3);
-      display: none;
-      flex-direction: column;
-      min-width: 120px;
-      overflow: hidden;
+
+    /* Panel Setengah Layar */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 50%;
+      height: 100vh;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(15px);
+      transition: right 0.3s ease;
+      padding: 40px 20px;
+      z-index: 9;
+      box-shadow: -10px 0 20px rgba(0, 255, 170, 0.1);
     }
-    .dropdown a {
-      padding: 10px;
-      text-decoration: none;
+    .side-menu.open {
+      right: 0;
+    }
+    .side-menu h2 {
+      margin-bottom: 20px;
+      color: #00ffa6;
+      font-size: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 10px;
+    }
+    .side-menu a {
+      display: block;
+      margin: 15px 0;
       color: #fff;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 6px;
       transition: background 0.3s;
     }
-    .dropdown a:hover {
-      background: rgba(0, 255, 170, 0.2);
+    .side-menu a:hover {
+      background: rgba(0,255,170,0.1);
     }
   </style>
 </head>
@@ -110,11 +127,13 @@
   <!-- Tombol Titik Tiga -->
   <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-  <!-- Dropdown Menu -->
-  <div class="dropdown" id="dropdownMenu">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+  <!-- Panel Menu Samping -->
+  <div class="side-menu" id="sideMenu">
+    <h2>Menu</h2>
+    <a href="#">🏠 Home</a>
+    <a href="#">👤 About</a>
+    <a href="#">📞 Contact</a>
+    <a href="#">💼 Project</a>
   </div>
 
   <div class="card">
@@ -131,8 +150,8 @@
 
   <script>
     function toggleMenu() {
-      const menu = document.getElementById('dropdownMenu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+      const menu = document.getElementById('sideMenu');
+      menu.classList.toggle('open');
     }
   </script>
 
