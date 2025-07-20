@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Biodata Fahri</title>
+  <title>Fahri Space</title>
   <style>
     * {
       margin: 0;
@@ -14,13 +14,45 @@
     body {
       background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
       color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
       padding: 20px;
       position: relative;
-      overflow-x: hidden;
+    }
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 26px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      padding: 5px 12px;
+      cursor: pointer;
+      z-index: 100;
+    }
+    .menu {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 10px 0;
+      width: 150px;
+      display: none;
+      flex-direction: column;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 10px rgba(0,255,170,0.3);
+      z-index: 99;
+    }
+    .menu a {
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+    .menu a:hover {
+      background-color: rgba(255,255,255,0.1);
     }
     .card {
       background: rgba(255, 255, 255, 0.05);
@@ -31,7 +63,7 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
       text-align: center;
-      z-index: 1;
+      margin: 80px auto 0;
     }
     .card img {
       width: 120px;
@@ -69,91 +101,76 @@
       background: #00c48c;
       transform: scale(1.05);
     }
-
-    /* Tombol Titik Tiga */
-    .menu-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: transparent;
-      border: none;
-      font-size: 24px;
-      color: #00ffa6;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    /* Panel Setengah Layar */
-    .side-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 50%;
-      height: 100vh;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(15px);
-      transition: right 0.3s ease;
-      padding: 40px 20px;
-      z-index: 9;
-      box-shadow: -10px 0 20px rgba(0, 255, 170, 0.1);
-    }
-    .side-menu.open {
-      right: 0;
-    }
-    .side-menu h2 {
-      margin-bottom: 20px;
-      color: #00ffa6;
-      font-size: 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 10px;
-    }
-    .side-menu a {
-      display: block;
-      margin: 15px 0;
-      color: #fff;
-      text-decoration: none;
-      font-size: 16px;
-      padding: 10px;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-    .side-menu a:hover {
-      background: rgba(0,255,170,0.1);
-    }
   </style>
 </head>
 <body>
-
-  <!-- Tombol Titik Tiga -->
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-
-  <!-- Panel Menu Samping -->
-  <div class="side-menu" id="sideMenu">
-    <h2>Menu</h2>
-    <a href="#">🏠 Home</a>
-    <a href="#">👤 About</a>
-    <a href="#">📞 Contact</a>
-    <a href="#">💼 Project</a>
+  <button class="menu-toggle" onclick="toggleMenu()">⋮</button>
+  <div class="menu" id="menu">
+    <a href="/home" onclick="navigate(event, 'home')">Home</a>
+    <a href="/about" onclick="navigate(event, 'about')">About</a>
+    <a href="/contact" onclick="navigate(event, 'contact')">Contact</a>
   </div>
 
-  <div class="card">
-    <img src="https://files.cloudkuimages.guru/images/49YXelND.jpg" alt="Foto Fahri">
-    <h1>Muhammad Fahri Firdaussillah</h1>
-    <p>Kelas: 11 TKJ 2</p>
-    <p>Hobi: ngobrol ama ChatGPT 🤖</p>
-    <div class="buttons">
-      <a href="https://instagram.com/pahri_ssttt" target="_blank">Instagram</a>
-      <a href="https://wa.me/6287775133151" target="_blank">WhatsApp</a>
-      <a href="https://t.me/VellzXyrine" target="_blank">Telegram</a>
-    </div>
+  <div class="card" id="content">
+    <!-- Default content will load here -->
   </div>
 
   <script>
+    const menu = document.getElementById("menu");
     function toggleMenu() {
-      const menu = document.getElementById('sideMenu');
-      menu.classList.toggle('open');
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
-  </script>
 
+    function navigate(event, page) {
+      event.preventDefault();
+      history.pushState({}, '', '/' + page);
+      loadContent(page);
+      toggleMenu();
+    }
+
+    function loadContent(page) {
+      const content = document.getElementById("content");
+      if (page === 'home') {
+        content.innerHTML = `
+          <img src="https://files.cloudkuimages.guru/images/49YXelND.jpg" alt="Foto Fahri">
+          <h1>Muhammad Fahri Firdaussillah</h1>
+          <p>Kelas: 11 TKJ 2</p>
+          <p>Hobi: ngobrol ama ChatGPT 🤖</p>
+          <div class="buttons">
+            <a href="https://instagram.com/pahri_ssttt" target="_blank">Instagram</a>
+            <a href="https://wa.me/6287775133151" target="_blank">WhatsApp</a>
+            <a href="https://t.me/VellzXyrine" target="_blank">Telegram</a>
+          </div>
+        `;
+      } else if (page === 'about') {
+        content.innerHTML = `
+          <h1>Tentang Saya</h1>
+          <p>Nama lengkap: Muhammad Fahri Firdaussillah</p>
+          <p>Seorang pelajar SMK yang suka ngulik, eksperimen coding, dan ngobrol ama AI 🤖</p>
+          <p>Sedang belajar banyak hal tentang teknologi, server, dan automation.</p>
+        `;
+      } else if (page === 'contact') {
+        content.innerHTML = `
+          <h1>Kontak Saya</h1>
+          <div class="buttons">
+            <a href="https://instagram.com/pahri_ssttt" target="_blank">Instagram</a>
+            <a href="https://wa.me/6287775133151" target="_blank">WhatsApp</a>
+            <a href="https://t.me/VellzXyrine" target="_blank">Telegram</a>
+          </div>
+        `;
+      } else {
+        loadContent('home');
+      }
+    }
+
+    window.addEventListener('popstate', () => {
+      const path = location.pathname.replace('/', '') || 'home';
+      loadContent(path);
+    });
+
+    // Default load
+    const initialPath = location.pathname.replace('/', '') || 'home';
+    loadContent(initialPath);
+  </script>
 </body>
 </html>
